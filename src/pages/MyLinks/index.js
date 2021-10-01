@@ -1,6 +1,6 @@
 import { useIsFocused } from '@react-navigation/core';
 import React, { useCallback, useEffect, useState } from 'react';
-import { ActivityIndicator, Modal, RefreshControl, LogBox } from 'react-native';
+import { ActivityIndicator, Modal, RefreshControl, LogBox, Alert } from 'react-native';
 import ListItem from '../../components/ListItem';
 import ModalLink from '../../components/ModalLink';
 import StatusBarPage from '../../components/StatusBarPage';
@@ -20,6 +20,24 @@ export default function MyLinks() {
   const handlePressItem = (item) => {
     setData(item);
     setModalVisible(true);
+  }
+
+  const handleConfirmRemoveItem = (id) => {
+    Alert.alert(
+      'Remove link?',
+      'This will permanently remove selected link',
+      [
+        {
+          text: 'Cancel',
+          style: 'cancel'
+        },
+        {
+          text: 'Remove',
+          onPress: () => handleRemoveItem(id),
+          style: 'destructive'
+        }
+      ]
+    );
   }
 
   const handleRemoveItem = async (id) => {
@@ -67,7 +85,7 @@ export default function MyLinks() {
           scrollEnabled={false}
           data={links}
           keyExtractor={(item) => String(item.id)}
-          renderItem={({ item }) => <ListItem data={item} handleOnPress={handlePressItem} handleOnRemove={handleRemoveItem} />}
+          renderItem={({ item }) => <ListItem data={item} handleOnPress={handlePressItem} handleOnRemove={handleConfirmRemoveItem} />}
           showsVerticalScrollIndicator={false}
         />
       }
