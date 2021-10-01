@@ -3,6 +3,7 @@ import { ModalContainer, Container, Header, LinkArea, Title, LongUrl, ShortLinkA
 import { Feather } from '@expo/vector-icons';
 import { View, TouchableOpacity, TouchableWithoutFeedback, Share } from 'react-native';
 import { setString } from 'expo-clipboard';
+import Toast from 'react-native-tiny-toast';
 
 export default function ModalLink({ onClose, data }) {
 
@@ -11,7 +12,7 @@ export default function ModalLink({ onClose, data }) {
 
   const handleCopyLink = () => {
     setString(link);
-    alert('Copied to clipboard');
+    Toast.show('Copied to clipboard', { position: Toast.position.TOP });
   }
 
   const handleShare = async () => {
@@ -28,9 +29,9 @@ export default function ModalLink({ onClose, data }) {
         return;
       }
 
-      alert('Link was shared');
+      Toast.show('Link was shared', { position: Toast.position.TOP });
     } catch (error) {
-      alert(error.message);
+      Toast.show('Something went wrong...');
     }
   }
 
