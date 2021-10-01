@@ -6,15 +6,6 @@
 </h2>
 <br>
 
-<p align="center">
-  <a href="#technologies">Technologies</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#getting-started">Getting started</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#project">Project</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#layout">Layout</a>
-</p>
-
-<br>
-
 ---
 
 ## 🧪 Technologies
@@ -23,7 +14,6 @@ This project was developed using the following technologies:
 
 - [React Native](https://reactnative.dev/)
 - [Expo](https://expo.io/)
-- [TypeScript](https://www.typescriptlang.org/)
 - [Styled Components](https://styled-components.com/)
 
 ## 🚀 Getting started
