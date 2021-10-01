@@ -28,7 +28,8 @@ export default function Routes() {
           drawerIcon: ({ focused, size, color }) => (<Ionicons color={color} name={focused ? 'cube' : 'cube-outline'} size={size} />),
           headerTintColor: '#fff',
           headerTransparent: true,
-          headerTitleAlign: 'center'
+          headerTitleAlign: 'center',
+          headerTitle: ''
         }}
       />
 
@@ -40,7 +41,8 @@ export default function Routes() {
           drawerIcon: ({ focused, size, color }) => (<Ionicons color={color} name={focused ? 'stats-chart' : 'stats-chart-outline'} size={size} />),
           headerTintColor: '#fff',
           headerTransparent: true,
-          headerTitleAlign: 'center'
+          headerTitleAlign: 'center',
+          headerTitle: ''
         }}
       />
     </Drawer.Navigator>
