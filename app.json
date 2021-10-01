@@ -27,6 +27,8 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "description": "Shortened links with React Native and Expo",
+    "githubUrl": "https://github.com/gabrielmilioli/mylink"
   }
 }

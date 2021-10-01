@@ -7,30 +7,41 @@ import { TouchableWithoutFeedback, Keyboard, KeyboardAvoidingView, Platform, Mod
 import ModalLink from '../../components/ModalLink';
 import api from '../../services/api';
 import { save } from '../../utils/StoreLinks';
+import Toast from 'react-native-tiny-toast';
 
 export default function Home() {
   const [loading, setLoading] = useState(false);
-  const [input, setInput] = useState('');
+  const [url, setUrl] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
   const [data, setData] = useState({});
 
   const handleShortenLink = () => {
-    if (input.trim() === '') {
+    let urlToShorten = url.toLowerCase().trim();
+
+    if (urlToShorten === '') {
+      Toast.show('Invalid URL');
       return;
+    }
+
+    if (urlToShorten.startsWith('http://')) {
+      urlToShorten.replace('http://', 'https://')
+    } else if (!urlToShorten.startsWith('https://')) {
+      urlToShorten = 'https://'.concat(urlToShorten);
     }
 
     setLoading(true);
 
-    api.shorten.new(input)
+    api.shorten.new(urlToShorten)
       .then(response => {
         setData(response.data);
         save(response.data);
-
-        setInput('');
+        setUrl('');
         setModalVisible(!modalVisible);
+        Toast.show('Success!', { position: Toast.position.TOP });
       })
-      .catch(err => {
-        alert('Something went wrong...');
+      .catch((err) => {
+        console.log(err.message);
+        Toast.show('Something went wrong...');
       })
       .finally(() => {
         Keyboard.dismiss();
@@ -83,14 +94,14 @@ export default function Home() {
                 autoCapitalize="none"
                 autoCorrect={false}
                 keyboardType="url"
-                value={input}
-                onChangeText={setInput}
+                value={url}
+                onChangeText={setUrl}
+                selectionColor="#fff"
               />
             </ContainerInput>
 
             <ButtonLink
               onPress={handleShortenLink}
-              disabled={!input}
             >
               {loading ? <ActivityIndicator color="#132742" size={24} /> : <ButtonLinkText>Shorten</ButtonLinkText>}
 
